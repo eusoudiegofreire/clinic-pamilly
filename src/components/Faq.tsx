@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 import { Plus } from "./icons";
+import Reveal, { RevealGroup, RevealItem } from "./Reveal";
 import { faq } from "@/config/site";
 
 export default function Faq() {
@@ -10,18 +11,18 @@ export default function Faq() {
   return (
     <section id="faq" className="bg-cream py-20 md:py-28">
       <div className="wrap">
-        <div className="max-w-2xl">
+        <Reveal className="max-w-2xl">
           <p className="kicker">{faq.kicker}</p>
           <h2 className="mt-5 text-3xl sm:text-4xl md:text-[2.5rem]">
             {faq.title}
           </h2>
-        </div>
+        </Reveal>
 
-        <div className="mt-11 grid gap-4 md:grid-cols-2">
+        <RevealGroup className="mt-11 grid gap-4 md:grid-cols-2">
           {faq.items.map((item, i) => {
             const isOpen = open === i;
             return (
-              <div
+              <RevealItem
                 key={item.q}
                 data-open={isOpen}
                 className="acc-item h-max rounded-card border border-card-border bg-white transition-colors data-[open=true]:bg-off-white"
@@ -46,10 +47,10 @@ export default function Faq() {
                     <p className="px-5 pb-5 text-primary/75">{item.a}</p>
                   </div>
                 </div>
-              </div>
+              </RevealItem>
             );
           })}
-        </div>
+        </RevealGroup>
       </div>
     </section>
   );

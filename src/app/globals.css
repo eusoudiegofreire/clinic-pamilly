@@ -272,26 +272,8 @@
     }
   }
 
-  /* ---- Reveal on scroll — CSS puro, visível por padrão (SEO/fallback) ---- */
-  @keyframes reveal-rise {
-    from {
-      opacity: 0;
-      transform: translateY(22px);
-    }
-    to {
-      opacity: 1;
-      transform: none;
-    }
-  }
-  @media (scripting: enabled) and (prefers-reduced-motion: no-preference) {
-    @supports (animation-timeline: view()) {
-      .reveal {
-        animation: reveal-rise both var(--ease-glide);
-        animation-timeline: view();
-        animation-range: entry 2% cover 22%;
-      }
-    }
-  }
+  /* Reveal on scroll agora é feito pelo Framer Motion (ver components/Reveal.tsx).
+     Sem JS, o <noscript> no layout força [data-reveal] a ficar visível. */
 
   /* ---- Accordion (FAQ) ---- */
   .acc-chevron {

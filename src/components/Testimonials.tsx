@@ -1,5 +1,5 @@
 import Image from "next/image";
-import Reveal from "./Reveal";
+import Reveal, { RevealGroup, RevealItem } from "./Reveal";
 import SectionCta from "./SectionCta";
 import { Play } from "./icons";
 import { testimonials } from "@/config/site";
@@ -15,28 +15,28 @@ export default function Testimonials() {
           </h2>
         </Reveal>
 
-        <div className="mt-12 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
-          {testimonials.items.map((item, i) => (
-            <Reveal key={item.id} delay={i * 90}>
-              <figure className="overflow-hidden rounded-card border border-card-border bg-white shadow-[var(--shadow-soft)]">
+        <RevealGroup className="mt-12 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+          {testimonials.items.map((item) => (
+            <RevealItem key={item.id}>
+              <figure className="group overflow-hidden rounded-card border border-card-border bg-white shadow-[var(--shadow-soft)]">
                 <div className="relative aspect-[4/5]">
                   <Image
                     src={item.poster}
                     alt="Depoimento de família atendida pela Dra. Pâmilly"
                     fill
                     sizes="(max-width: 640px) 90vw, (max-width: 1024px) 45vw, 360px"
-                    className="object-cover"
+                    className="object-cover transition-transform duration-500 ease-[cubic-bezier(0.16,1,0.3,1)] group-hover:scale-[1.03]"
                   />
                   <span className="absolute inset-0 grid place-items-center">
-                    <span className="grid h-16 w-16 place-items-center rounded-full bg-white/92 text-primary shadow-[var(--shadow-soft)]">
+                    <span className="grid h-16 w-16 place-items-center rounded-full bg-white/92 text-primary shadow-[var(--shadow-soft)] transition-transform duration-300 ease-[cubic-bezier(0.34,1.56,0.64,1)] group-hover:scale-110">
                       <Play className="ml-0.5 h-6 w-6" />
                     </span>
                   </span>
                 </div>
               </figure>
-            </Reveal>
+            </RevealItem>
           ))}
-        </div>
+        </RevealGroup>
 
         <Reveal delay={200}>
           <SectionCta className="mt-12" />

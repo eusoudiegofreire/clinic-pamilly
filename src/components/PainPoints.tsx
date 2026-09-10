@@ -1,5 +1,6 @@
 import Image from "next/image";
 import Reveal from "./Reveal";
+import ParallaxY from "./ParallaxY";
 import SectionCta from "./SectionCta";
 import { painPoints } from "@/config/site";
 
@@ -9,7 +10,7 @@ export default function PainPoints() {
       <div className="wrap grid gap-14 lg:grid-cols-[0.85fr_1.15fr] lg:items-center">
         {/* Colagem de fotos */}
         <Reveal className="relative mx-auto w-full max-w-[380px]">
-          <div className="arch--soft w-3/4 shadow-[var(--shadow-lift)]">
+          <ParallaxY distance={34} className="arch--soft w-3/4 shadow-[var(--shadow-lift)]">
             <Image
               src="/images/pamilly-sintomas-1.jpg"
               alt="Dra. Pâmilly em atendimento"
@@ -18,8 +19,11 @@ export default function PainPoints() {
               sizes="(max-width: 1024px) 60vw, 280px"
               className="h-full w-full object-cover"
             />
-          </div>
-          <div className="arch--soft absolute -bottom-10 right-0 w-1/2 border-4 border-off-white shadow-[var(--shadow-lift)]">
+          </ParallaxY>
+          <ParallaxY
+            distance={-28}
+            className="arch--soft absolute -bottom-10 right-0 w-1/2 border-4 border-off-white shadow-[var(--shadow-lift)]"
+          >
             <Image
               src="/images/pamilly-sintomas-2.jpg"
               alt="Consultório da Life Clinic"
@@ -28,7 +32,7 @@ export default function PainPoints() {
               sizes="(max-width: 1024px) 40vw, 180px"
               className="h-full w-full object-cover"
             />
-          </div>
+          </ParallaxY>
         </Reveal>
 
         {/* Texto + citações */}

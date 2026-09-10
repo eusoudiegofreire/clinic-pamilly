@@ -7,6 +7,7 @@ import {
   aboutDoctor,
   SITE_URL,
 } from "@/config/site";
+import MotionProvider from "@/components/providers/MotionProvider";
 import "./globals.css";
 
 const manrope = Manrope({
@@ -133,9 +134,13 @@ export default function RootLayout({
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
         />
+        {/* Sem JS: garante que todo conteúdo animado apareça normalmente. */}
+        <noscript>
+          <style>{`[data-reveal]{opacity:1!important;transform:none!important;filter:none!important}`}</style>
+        </noscript>
       </head>
-      <body className="min-h-dvh bg-white font-body text-primary">
-        {children}
+      <body className="min-h-dvh bg-cream font-body text-primary">
+        <MotionProvider>{children}</MotionProvider>
       </body>
     </html>
   );

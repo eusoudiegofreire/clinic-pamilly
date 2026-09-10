@@ -1,35 +1,100 @@
-import type { CSSProperties, ElementType, ReactNode } from "react";
+"use client";
 
-type RevealProps = {
+import { motion, type Variants } from "framer-motion";
+import type { ComponentProps, ReactNode } from "react";
+
+const SPRING = { type: "spring", stiffness: 100, damping: 20, mass: 0.9 } as const;
+
+/** Enter recipe (Jakub): opacity + translateY + blur, spring, bounce 0. */
+const revealVariants: Variants = {
+  hidden: { opacity: 0, y: 22, filter: "blur(6px)" },
+  visible: (delay = 0) => ({
+    opacity: 1,
+    y: 0,
+    filter: "blur(0px)",
+    transition: { ...SPRING, delay: delay / 1000 },
+  }),
+};
+
+const groupVariants: Variants = {
+  hidden: {},
+  visible: { transition: { staggerChildren: 0.08, delayChildren: 0.02 } },
+};
+
+type Tag = "div" | "section" | "h2" | "h3" | "p" | "ul" | "ol" | "li" | "figure";
+
+type BaseProps = Omit<
+  ComponentProps<typeof motion.div>,
+  "children" | "variants" | "custom"
+>;
+
+type RevealProps = BaseProps & {
   children: ReactNode;
-  as?: ElementType;
+  as?: Tag;
   className?: string;
-  /** escalona itens de uma mesma seção (offset no range da animação) */
+  /** atraso individual em ms (quando fora de um RevealGroup) */
   delay?: number;
 };
 
-/**
- * Wrapper de reveal on scroll. Animação 100% CSS (ver globals.css): o
- * conteúdo é visível por padrão e só anima onde há suporte a
- * scroll-driven animations. Sem JS, sem flash, sem risco de sumir.
- */
+/** Revela um bloco ao entrar na viewport. Visível por padrão sem JS (ver <noscript> no layout). */
 export default function Reveal({
   children,
-  as,
+  as = "div",
   className = "",
   delay = 0,
+  ...rest
 }: RevealProps) {
-  const Tag = (as ?? "div") as ElementType;
-  const style =
-    delay > 0
-      ? ({
-          animationRange: `entry ${Math.min(2 + delay / 40, 14)}% cover 30%`,
-        } as CSSProperties)
-      : undefined;
-
+  const M = motion[as] as typeof motion.div;
   return (
-    <Tag className={`reveal ${className}`} style={style}>
+    <M
+      data-reveal
+      className={className}
+      variants={revealVariants}
+      custom={delay}
+      initial="hidden"
+      whileInView="visible"
+      viewport={{ once: true, margin: "-90px" }}
+      {...rest}
+    >
       {children}
-    </Tag>
+    </M>
+  );
+}
+
+/** Container que escalona os RevealItem filhos. */
+export function RevealGroup({
+  children,
+  as = "div",
+  className = "",
+  ...rest
+}: Omit<RevealProps, "delay">) {
+  const M = motion[as] as typeof motion.div;
+  return (
+    <M
+      data-reveal
+      className={className}
+      variants={groupVariants}
+      initial="hidden"
+      whileInView="visible"
+      viewport={{ once: true, margin: "-90px" }}
+      {...rest}
+    >
+      {children}
+    </M>
+  );
+}
+
+/** Filho de um RevealGroup. */
+export function RevealItem({
+  children,
+  as = "div",
+  className = "",
+  ...rest
+}: Omit<RevealProps, "delay">) {
+  const M = motion[as] as typeof motion.div;
+  return (
+    <M data-reveal className={className} variants={revealVariants} {...rest}>
+      {children}
+    </M>
   );
 }

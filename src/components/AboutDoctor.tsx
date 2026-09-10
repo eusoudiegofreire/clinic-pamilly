@@ -1,5 +1,6 @@
 import Image from "next/image";
-import Reveal from "./Reveal";
+import Reveal, { RevealGroup, RevealItem } from "./Reveal";
+import ParallaxY from "./ParallaxY";
 import SectionCta from "./SectionCta";
 import { aboutDoctor } from "@/config/site";
 
@@ -18,7 +19,7 @@ export default function AboutDoctor() {
           <div className="relative grid gap-12 md:grid-cols-[0.95fr_1.05fr] md:items-center">
             {/* Fotos */}
             <Reveal className="relative mx-auto w-full max-w-[380px]">
-              <div className="arch--soft w-4/5 shadow-[var(--shadow-lift)]">
+              <ParallaxY distance={30} className="arch--soft w-4/5 shadow-[var(--shadow-lift)]">
                 <Image
                   src="/images/pamilly-sobre-1.jpg"
                   alt={aboutDoctor.name}
@@ -27,8 +28,11 @@ export default function AboutDoctor() {
                   sizes="(max-width: 768px) 70vw, 300px"
                   className="h-full w-full object-cover"
                 />
-              </div>
-              <div className="arch--soft absolute -bottom-8 right-0 w-1/2 border-4 border-off-white shadow-[var(--shadow-lift)]">
+              </ParallaxY>
+              <ParallaxY
+                distance={-24}
+                className="arch--soft absolute -bottom-8 right-0 w-1/2 border-4 border-off-white shadow-[var(--shadow-lift)]"
+              >
                 <Image
                   src="/images/pamilly-sobre-2.jpg"
                   alt={aboutDoctor.name}
@@ -37,7 +41,7 @@ export default function AboutDoctor() {
                   sizes="(max-width: 768px) 40vw, 170px"
                   className="h-full w-full object-cover"
                 />
-              </div>
+              </ParallaxY>
             </Reveal>
 
             {/* Texto */}
@@ -48,16 +52,17 @@ export default function AboutDoctor() {
               </h2>
               <p className="mt-4 text-lg text-primary/75">{aboutDoctor.role}</p>
 
-              <ul className="mt-7 flex flex-wrap gap-2.5">
+              <RevealGroup as="ul" className="mt-7 flex flex-wrap gap-2.5">
                 {aboutDoctor.registrations.map((reg) => (
-                  <li
+                  <RevealItem
+                    as="li"
                     key={reg}
                     className="rounded-full border border-primary/20 bg-white px-3.5 py-1.5 text-sm font-medium text-primary"
                   >
                     {reg}
-                  </li>
+                  </RevealItem>
                 ))}
-              </ul>
+              </RevealGroup>
 
               <SectionCta className="mt-9" />
             </Reveal>

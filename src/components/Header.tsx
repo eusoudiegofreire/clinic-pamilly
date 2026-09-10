@@ -1,3 +1,7 @@
+"use client";
+
+import { useState } from "react";
+import { useScroll, useMotionValueEvent } from "framer-motion";
 import Monogram from "./Monogram";
 import PillButton from "./PillButton";
 import { WhatsApp } from "./icons";
@@ -10,16 +14,30 @@ import {
 } from "@/config/site";
 
 export default function Header() {
+  const { scrollY } = useScroll();
+  const [scrolled, setScrolled] = useState(false);
+
+  useMotionValueEvent(scrollY, "change", (y) => {
+    const next = y > 80;
+    if (next !== scrolled) setScrolled(next);
+  });
+
   return (
     <div className="sticky top-0 z-40">
-      {/* Faixa fina superior */}
-      <div className="bg-primary-deep text-center text-[0.72rem] font-medium uppercase tracking-[0.18em] text-white/85">
+      {/* Faixa fina superior — recolhe ao rolar */}
+      <div
+        data-scrolled={scrolled}
+        className="overflow-hidden bg-primary-deep text-center text-[0.72rem] font-medium uppercase tracking-[0.18em] text-white/85 transition-[max-height,opacity] duration-300 ease-[cubic-bezier(0.16,1,0.3,1)] data-[scrolled=true]:max-h-0 data-[scrolled=true]:opacity-0 max-h-10 opacity-100"
+      >
         <p className="wrap py-2">{topStrip}</p>
       </div>
 
       {/* Barra principal */}
-      <header className="border-b border-card-border/70 bg-cream/85 backdrop-blur-md">
-        <div className="wrap flex h-[4.25rem] items-center justify-between gap-6">
+      <header
+        data-scrolled={scrolled}
+        className="group border-b border-card-border/70 bg-cream/85 backdrop-blur-md transition-shadow duration-300 data-[scrolled=true]:shadow-[var(--shadow-soft)]"
+      >
+        <div className="wrap flex items-center justify-between gap-6 py-3.5 transition-[padding] duration-300 ease-[cubic-bezier(0.16,1,0.3,1)] group-data-[scrolled=true]:py-2">
           <a
             href="#top"
             className="flex items-center gap-3"
@@ -37,13 +55,13 @@ export default function Header() {
           </a>
 
           <nav className="hidden items-center gap-7 lg:flex">
-            {nav.map((item) => (
+            {nav.map((n) => (
               <a
-                key={item.href}
-                href={item.href}
+                key={n.href}
+                href={n.href}
                 className="text-sm font-medium text-primary/70 transition-colors hover:text-primary"
               >
-                {item.label}
+                {n.label}
               </a>
             ))}
           </nav>
