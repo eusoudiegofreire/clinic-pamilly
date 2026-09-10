@@ -1,24 +1,25 @@
 import Image from "next/image";
-import { Play } from "lucide-react";
 import Reveal from "./Reveal";
+import SectionCta from "./SectionCta";
+import { Play } from "./icons";
 import { testimonials } from "@/config/site";
 
 export default function Testimonials() {
   return (
-    <section id="depoimentos" className="bg-white py-20 md:py-28">
+    <section id="depoimentos" className="bg-off-white py-20 md:py-28">
       <div className="wrap">
-        <Reveal
-          as="h2"
-          className="mx-auto max-w-2xl text-center text-3xl text-primary sm:text-4xl"
-        >
-          {testimonials.title}
+        <Reveal className="max-w-2xl">
+          <p className="kicker">{testimonials.kicker}</p>
+          <h2 className="mt-5 text-3xl sm:text-4xl md:text-[2.5rem]">
+            {testimonials.title}
+          </h2>
         </Reveal>
 
         <div className="mt-12 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
           {testimonials.items.map((item, i) => (
             <Reveal key={item.id} delay={i * 90}>
-              <figure className="overflow-hidden rounded-card border border-card-border bg-off-white shadow-[var(--shadow-soft)]">
-                <div className="relative aspect-[3/4]">
+              <figure className="overflow-hidden rounded-card border border-card-border bg-white shadow-[var(--shadow-soft)]">
+                <div className="relative aspect-[4/5]">
                   <Image
                     src={item.poster}
                     alt="Depoimento de família atendida pela Dra. Pâmilly"
@@ -27,8 +28,8 @@ export default function Testimonials() {
                     className="object-cover"
                   />
                   <span className="absolute inset-0 grid place-items-center">
-                    <span className="grid h-14 w-14 place-items-center rounded-full bg-white/90 text-primary shadow-[var(--shadow-soft)]">
-                      <Play className="ml-0.5 h-6 w-6 fill-current" />
+                    <span className="grid h-16 w-16 place-items-center rounded-full bg-white/92 text-primary shadow-[var(--shadow-soft)]">
+                      <Play className="ml-0.5 h-6 w-6" />
                     </span>
                   </span>
                 </div>
@@ -36,6 +37,10 @@ export default function Testimonials() {
             </Reveal>
           ))}
         </div>
+
+        <Reveal delay={200}>
+          <SectionCta className="mt-12" />
+        </Reveal>
       </div>
     </section>
   );

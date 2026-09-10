@@ -13,8 +13,13 @@ const OUT = path.resolve("public/images");
 
 /** Fotos: original -> nome de saída + largura máxima. */
 const PHOTOS = [
-  { from: "IMG_7146.JPEG", to: "pamilly-hero", width: 900 },
-  { from: "IMG_7148.JPEG", to: "pamilly-sobre", width: 820 },
+  { from: "IMG_7146.JPEG", to: "pamilly-hero", width: 950 },
+  { from: "IMG_7147.JPEG", to: "pamilly-sobre-1", width: 760 },
+  { from: "IMG_7141 (1).JPEG", to: "pamilly-sobre-2", width: 560 },
+  { from: "IMG_7143.JPEG", to: "pamilly-sintomas-1", width: 560 },
+  { from: "IMG_7142.JPEG", to: "pamilly-sintomas-2", width: 560 },
+  { from: "IMG_7145.JPEG", to: "pamilly-fluxo", width: 1100 },
+  { from: "IMG_7148.JPEG", to: "pamilly-oferta", width: 620 },
 ];
 
 async function photos() {

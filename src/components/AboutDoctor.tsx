@@ -1,48 +1,68 @@
 import Image from "next/image";
 import Reveal from "./Reveal";
-import { aboutDoctor, siteConfig } from "@/config/site";
+import SectionCta from "./SectionCta";
+import { aboutDoctor } from "@/config/site";
 
 export default function AboutDoctor() {
   return (
-    <section id="sobre" className="relative overflow-hidden bg-warm-beige py-20 md:py-28">
-      <div className="wrap grid items-center gap-12 md:grid-cols-[0.9fr_1.1fr]">
-        <Reveal className="relative">
-          <div
-            className="blob -left-10 -top-10 h-56 w-56 bg-salmon/50"
+    <section id="sobre" className="bg-cream py-20 md:py-28">
+      <div className="wrap">
+        <div className="relative overflow-hidden rounded-[28px] border border-card-border bg-off-white px-6 py-14 sm:px-12 md:py-16">
+          <span
             aria-hidden="true"
-          />
-          <div className="relative overflow-hidden rounded-card shadow-[var(--shadow-lift)]">
-            <Image
-              src="/images/pamilly-sobre.jpg"
-              alt={`${siteConfig.doctor}`}
-              width={640}
-              height={760}
-              sizes="(max-width: 768px) 90vw, 400px"
-              className="h-full w-full object-cover"
-            />
+            className="watermark absolute -right-4 bottom-2 text-[5.5rem] sm:text-[8rem]"
+          >
+            {aboutDoctor.watermark}
+          </span>
+
+          <div className="relative grid gap-12 md:grid-cols-[0.95fr_1.05fr] md:items-center">
+            {/* Fotos */}
+            <Reveal className="relative mx-auto w-full max-w-[380px]">
+              <div className="arch--soft w-4/5 shadow-[var(--shadow-lift)]">
+                <Image
+                  src="/images/pamilly-sobre-1.jpg"
+                  alt={aboutDoctor.name}
+                  width={620}
+                  height={780}
+                  sizes="(max-width: 768px) 70vw, 300px"
+                  className="h-full w-full object-cover"
+                />
+              </div>
+              <div className="arch--soft absolute -bottom-8 right-0 w-1/2 border-4 border-off-white shadow-[var(--shadow-lift)]">
+                <Image
+                  src="/images/pamilly-sobre-2.jpg"
+                  alt={aboutDoctor.name}
+                  width={420}
+                  height={520}
+                  sizes="(max-width: 768px) 40vw, 170px"
+                  className="h-full w-full object-cover"
+                />
+              </div>
+            </Reveal>
+
+            {/* Texto */}
+            <Reveal delay={120}>
+              <p className="kicker">{aboutDoctor.kicker}</p>
+              <h2 className="mt-5 font-heading text-3xl font-extrabold text-primary sm:text-4xl">
+                {aboutDoctor.name}
+              </h2>
+              <p className="mt-4 text-lg text-primary/75">{aboutDoctor.role}</p>
+
+              <ul className="mt-7 flex flex-wrap gap-2.5">
+                {aboutDoctor.registrations.map((reg) => (
+                  <li
+                    key={reg}
+                    className="rounded-full border border-primary/20 bg-white px-3.5 py-1.5 text-sm font-medium text-primary"
+                  >
+                    {reg}
+                  </li>
+                ))}
+              </ul>
+
+              <SectionCta className="mt-9" />
+            </Reveal>
           </div>
-        </Reveal>
-
-        <Reveal delay={100}>
-          <h2 className="text-sm font-semibold uppercase tracking-[0.16em] text-primary/70">
-            {aboutDoctor.title}
-          </h2>
-          <p className="mt-3 font-heading text-3xl font-bold text-primary sm:text-4xl">
-            {aboutDoctor.name}
-          </p>
-          <p className="mt-3 text-lg text-primary/80">{aboutDoctor.role}</p>
-
-          <ul className="mt-7 flex flex-wrap gap-2.5">
-            {aboutDoctor.registrations.map((reg) => (
-              <li
-                key={reg}
-                className="rounded-full border border-primary/20 bg-white/70 px-3.5 py-1.5 text-sm font-medium text-primary"
-              >
-                {reg}
-              </li>
-            ))}
-          </ul>
-        </Reveal>
+        </div>
       </div>
     </section>
   );

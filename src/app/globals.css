@@ -2,34 +2,39 @@
 
 /* ============================================================
    Identidade visual — Dra. Pâmilly / Life Clinic
-   Cores e métricas exatamente como no documento de referência.
+   Paleta e métricas exatamente como no documento de referência.
+   Linguagem de layout inspirada em landing pages médicas quentes
+   e editoriais (fotografia forte, monograma, botões-pílula).
    ============================================================ */
 
 @theme {
   /* Cores */
   --color-primary: #31575b; /* verde petróleo — cor funcional principal */
   --color-primary-hover: #416a6e; /* hover do CTA principal */
+  --color-primary-deep: #274549; /* petróleo mais fundo (bandas escuras) */
   --color-salmon: #f0c2b8; /* rosa Life — cor emocional / marca */
+  --color-salmon-soft: #f7ddd6; /* rosa diluído p/ fundos */
   --color-sage: #afb5a9; /* verde sálvia — secundária */
   --color-warm-beige: #f0dace; /* bege quente — fundos acolhedores */
   --color-off-white: #f3ede8; /* off-white — superfícies */
+  --color-cream: #faf6f1; /* creme base */
   --color-card-border: #e8e4df; /* borda de card padrão */
-  --color-ink: #31575b;
 
   /* Tipografia */
   --font-heading: var(--font-manrope), ui-sans-serif, system-ui, sans-serif;
   --font-body: var(--font-inter), ui-sans-serif, system-ui, sans-serif;
 
   /* Raios */
-  --radius-card: 16px;
-  --radius-button: 12px;
-  --radius-input: 10px;
+  --radius-card: 20px;
+  --radius-button: 999px;
+  --radius-input: 12px;
+  --radius-arch: 46% 46% 12px 12px / 34% 34% 12px 12px; /* moldura em arco */
 
-  /* Sombras extremamente suaves (nada de sombra preta pesada) */
-  --shadow-soft: 0 1px 2px rgba(49, 87, 91, 0.04), 0 8px 24px rgba(49, 87, 91, 0.06);
-  --shadow-lift: 0 2px 4px rgba(49, 87, 91, 0.05), 0 16px 40px rgba(49, 87, 91, 0.08);
+  /* Sombras extremamente suaves */
+  --shadow-soft: 0 1px 2px rgba(39, 69, 73, 0.04), 0 10px 30px rgba(39, 69, 73, 0.07);
+  --shadow-lift: 0 2px 6px rgba(39, 69, 73, 0.06), 0 26px 60px rgba(39, 69, 73, 0.12);
 
-  /* Motion — easings de spring physics adaptados do kinetics (ckissi/kinetics) */
+  /* Motion — easings de spring adaptados do kinetics (ckissi/kinetics) */
   --ease-spring: cubic-bezier(0.34, 1.56, 0.64, 1);
   --ease-glide: cubic-bezier(0.16, 1, 0.3, 1);
 }
@@ -38,15 +43,16 @@
   * {
     box-sizing: border-box;
   }
-
   html {
     scroll-behavior: smooth;
+    scroll-padding-top: 6rem;
   }
-
   body {
-    background: var(--color-white);
+    background: var(--color-cream);
     color: var(--color-primary);
     font-family: var(--font-body);
+    font-size: 16px;
+    line-height: 1.6;
     -webkit-font-smoothing: antialiased;
     text-rendering: optimizeLegibility;
   }
@@ -56,9 +62,10 @@
   h3,
   h4 {
     font-family: var(--font-heading);
-    font-weight: 700;
-    letter-spacing: -0.02em;
-    line-height: 1.1;
+    font-weight: 800;
+    letter-spacing: -0.03em;
+    line-height: 1.04;
+    color: var(--color-primary);
     text-wrap: balance;
   }
 
@@ -66,11 +73,10 @@
     background: var(--color-salmon);
     color: var(--color-primary);
   }
-
   :focus-visible {
     outline: 2px solid var(--color-primary);
     outline-offset: 3px;
-    border-radius: 4px;
+    border-radius: 6px;
   }
 
   @media (prefers-reduced-motion: reduce) {
@@ -88,35 +94,189 @@
 }
 
 @layer components {
-  /* CTA principal — squish/press adaptado do kinetics (#26 "Squish button") */
-  .btn-press {
-    transition: transform 0.5s var(--ease-spring), background-color 0.25s ease,
-      box-shadow 0.25s ease;
-    will-change: transform;
+  /* ---- Kicker / olho de seção (label pequeno em caixa alta) ---- */
+  .kicker {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.55rem;
+    font-family: var(--font-heading);
+    font-weight: 700;
+    font-size: 0.72rem;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: color-mix(in srgb, var(--color-primary) 68%, transparent);
   }
-  .btn-press:active {
-    transform: scale(0.94);
-    transition: transform 0.08s ease-out;
+  .kicker::before {
+    content: "";
+    width: 1.6rem;
+    height: 1px;
+    background: var(--color-salmon);
+  }
+  .kicker--center::after {
+    content: "";
+    width: 1.6rem;
+    height: 1px;
+    background: var(--color-salmon);
   }
 
-  /* Hover magnético sutil (#2 "Magnetic button") */
-  .btn-magnet {
-    transition: transform 0.18s var(--ease-glide), background-color 0.25s ease,
-      box-shadow 0.25s ease;
+  /* ---- Botão pílula com disco de ícone (padrão das referências) ---- */
+  .pill {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.75rem;
+    padding: 0.5rem 0.6rem 0.5rem 1.5rem;
+    min-height: 3.25rem;
+    border-radius: var(--radius-button);
+    font-family: var(--font-heading);
+    font-weight: 700;
+    font-size: 0.82rem;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    line-height: 1.15;
+    transition: transform 0.5s var(--ease-spring), background-color 0.25s ease,
+      color 0.25s ease, box-shadow 0.25s ease;
+    will-change: transform;
+  }
+  .pill__disc {
+    display: grid;
+    place-items: center;
+    width: 2.25rem;
+    height: 2.25rem;
+    border-radius: 999px;
+    flex: none;
+    transition: transform 0.35s var(--ease-spring);
   }
   @media (hover: hover) {
-    .btn-magnet:hover {
+    .pill:hover {
       transform: translateY(-2px);
+    }
+    .pill:hover .pill__disc {
+      transform: rotate(45deg);
+    }
+  }
+  .pill:active {
+    transform: scale(0.96);
+    transition: transform 0.08s ease-out;
+  }
+  .pill--primary {
+    background: var(--color-primary);
+    color: #fff;
+    box-shadow: var(--shadow-soft);
+  }
+  .pill--primary:hover {
+    background: var(--color-primary-hover);
+  }
+  .pill--primary .pill__disc {
+    background: rgba(255, 255, 255, 0.16);
+    color: #fff;
+  }
+  .pill--ghost {
+    background: transparent;
+    color: var(--color-primary);
+    border: 1px solid color-mix(in srgb, var(--color-primary) 30%, transparent);
+  }
+  .pill--ghost:hover {
+    background: color-mix(in srgb, var(--color-primary) 6%, transparent);
+  }
+  .pill--ghost .pill__disc {
+    background: var(--color-salmon);
+    color: var(--color-primary);
+  }
+  .pill--salmon {
+    background: var(--color-salmon);
+    color: var(--color-primary);
+  }
+  .pill--salmon .pill__disc {
+    background: rgba(39, 69, 73, 0.12);
+    color: var(--color-primary);
+  }
+
+  /* Versão compacta (header) */
+  .pill--compact {
+    min-height: 2.75rem;
+    padding: 0.3rem 0.4rem 0.3rem 1.1rem;
+    font-size: 0.7rem;
+    gap: 0.55rem;
+  }
+  .pill--compact .pill__disc {
+    width: 1.9rem;
+    height: 1.9rem;
+  }
+
+  /* Link discreto "agende pelo WhatsApp" */
+  .wa-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-weight: 600;
+    font-size: 0.9rem;
+    color: color-mix(in srgb, var(--color-primary) 78%, transparent);
+    transition: color 0.2s ease;
+  }
+  .wa-link:hover {
+    color: var(--color-primary);
+  }
+
+  /* ---- Moldura em arco para fotos ---- */
+  .arch {
+    border-radius: var(--radius-arch);
+    overflow: hidden;
+    position: relative;
+  }
+  .arch--soft {
+    border-radius: 28px;
+    overflow: hidden;
+    position: relative;
+  }
+
+  /* ---- Monograma "PB" ---- */
+  .monogram {
+    display: grid;
+    place-items: center;
+    border-radius: 999px;
+    border: 1px solid var(--color-salmon);
+    font-family: var(--font-heading);
+    font-weight: 700;
+    letter-spacing: 0.04em;
+    color: var(--color-primary);
+    background: color-mix(in srgb, var(--color-salmon) 22%, #fff);
+  }
+
+  /* ---- Watermark do primeiro nome atrás das fotos ---- */
+  .watermark {
+    font-family: var(--font-heading);
+    font-weight: 800;
+    letter-spacing: -0.04em;
+    line-height: 1;
+    color: color-mix(in srgb, var(--color-primary) 6%, transparent);
+    user-select: none;
+    pointer-events: none;
+  }
+
+  /* ---- Formas orgânicas ---- */
+  .blob {
+    position: absolute;
+    border-radius: 42% 58% 63% 37% / 41% 44% 56% 59%;
+    filter: blur(1px);
+    animation: blob-drift 20s ease-in-out infinite alternate;
+    pointer-events: none;
+  }
+  @keyframes blob-drift {
+    0% {
+      border-radius: 42% 58% 63% 37% / 41% 44% 56% 59%;
+      transform: translate3d(0, 0, 0) rotate(0deg);
+    }
+    100% {
+      border-radius: 55% 45% 40% 60% / 55% 52% 48% 45%;
+      transform: translate3d(0, -16px, 0) rotate(9deg);
     }
   }
 
-  /* Reveal on scroll — fade + rise.
-     Visível por padrão (sem JS, para SEO e fallback). Só anima onde o
-     navegador suporta scroll-driven animations; nos demais, aparece direto. */
+  /* ---- Reveal on scroll — CSS puro, visível por padrão (SEO/fallback) ---- */
   @keyframes reveal-rise {
     from {
       opacity: 0;
-      transform: translateY(20px);
+      transform: translateY(22px);
     }
     to {
       opacity: 1;
@@ -133,12 +293,12 @@
     }
   }
 
-  /* Accordion spring (#6) — chevron */
+  /* ---- Accordion (FAQ) ---- */
   .acc-chevron {
     transition: transform 0.35s var(--ease-spring);
   }
   .acc-item[data-open="true"] .acc-chevron {
-    transform: rotate(180deg);
+    transform: rotate(135deg);
   }
   .acc-panel {
     display: grid;
@@ -151,29 +311,10 @@
   .acc-panel > div {
     overflow: hidden;
   }
-
-  /* Formas orgânicas — blobs discretos inspirados no traço da marca */
-  .blob {
-    position: absolute;
-    border-radius: 42% 58% 63% 37% / 41% 44% 56% 59%;
-    filter: blur(2px);
-    animation: blob-drift 18s ease-in-out infinite alternate;
-    pointer-events: none;
-  }
-  @keyframes blob-drift {
-    0% {
-      border-radius: 42% 58% 63% 37% / 41% 44% 56% 59%;
-      transform: translate3d(0, 0, 0) rotate(0deg);
-    }
-    100% {
-      border-radius: 55% 45% 40% 60% / 55% 52% 48% 45%;
-      transform: translate3d(0, -14px, 0) rotate(8deg);
-    }
-  }
 }
 
 @utility wrap {
   margin-inline: auto;
-  max-width: 1180px;
-  padding-inline: 1.25rem;
+  max-width: 1200px;
+  padding-inline: 1.5rem;
 }

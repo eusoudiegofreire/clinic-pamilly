@@ -7,7 +7,9 @@ import AboutDoctor from "@/components/AboutDoctor";
 import Testimonials from "@/components/Testimonials";
 import Offer from "@/components/Offer";
 import Faq from "@/components/Faq";
+import FinalCta from "@/components/FinalCta";
 import Footer from "@/components/Footer";
+import WhatsAppFloat from "@/components/WhatsAppFloat";
 
 export default function Home() {
   return (
@@ -22,8 +24,10 @@ export default function Home() {
         <Testimonials />
         <Offer />
         <Faq />
+        <FinalCta />
       </main>
       <Footer />
+      <WhatsAppFloat />
     </>
   );
 }
