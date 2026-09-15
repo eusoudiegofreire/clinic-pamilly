@@ -4,7 +4,6 @@ import Image from "next/image";
 import { motion, useReducedMotion } from "framer-motion";
 import PillButton from "./PillButton";
 import Reveal, { RevealGroup, RevealItem } from "./Reveal";
-import Monogram from "./Monogram";
 import ParallaxY from "./ParallaxY";
 import { Check, WhatsApp } from "./icons";
 import { offer, whatsappUrl, CTA_WHATSAPP } from "@/config/site";
@@ -71,10 +70,6 @@ export default function Offer() {
               className="h-full w-full object-cover"
             />
           </ParallaxY>
-          <Monogram
-            tone="white"
-            className="absolute -right-4 top-6 h-14 w-14 border-white/50 !bg-primary-deep"
-          />
         </Reveal>
       </div>
     </section>

@@ -2,7 +2,6 @@
 
 import Image from "next/image";
 import { motion, useReducedMotion, type Variants } from "framer-motion";
-import Monogram from "./Monogram";
 import PillButton from "./PillButton";
 import { WhatsApp } from "./icons";
 import { hero, siteConfig, whatsappUrl, CTA_WHATSAPP } from "@/config/site";
@@ -131,8 +130,6 @@ export default function Hero() {
               className="h-full w-full object-cover"
             />
           </div>
-
-          <Monogram className="absolute -left-5 top-8 h-16 w-16 shadow-[var(--shadow-soft)]" />
 
           <motion.div
             className="absolute -bottom-6 right-2 w-max max-w-[15rem] rounded-2xl border border-card-border bg-white/95 px-4 py-3 shadow-[var(--shadow-soft)] backdrop-blur-sm"

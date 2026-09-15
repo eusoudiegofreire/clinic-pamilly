@@ -1,8 +1,8 @@
 "use client";
 
 import { useState } from "react";
+import Image from "next/image";
 import { useScroll, useMotionValueEvent } from "framer-motion";
-import Monogram from "./Monogram";
 import PillButton from "./PillButton";
 import { WhatsApp } from "./icons";
 import {
@@ -43,7 +43,14 @@ export default function Header() {
             className="flex items-center gap-3"
             aria-label={`${siteConfig.doctor} — início`}
           >
-            <Monogram className="h-10 w-10" />
+            <Image
+              src="/images/logo-life-clinic.png"
+              alt={siteConfig.name}
+              width={140}
+              height={104}
+              priority
+              className="h-10 w-auto"
+            />
             <span className="hidden leading-tight sm:block">
               <span className="block font-heading text-sm font-bold text-primary">
                 {siteConfig.doctor}

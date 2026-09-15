@@ -230,15 +230,6 @@
   }
 
   /* ---- Monograma "PB" ---- */
-  .monogram {
-    display: grid;
-    place-items: center;
-    border-radius: 999px;
-    border: 1px solid var(--color-salmon);
-    background: color-mix(in srgb, var(--color-salmon) 22%, #fff);
-    overflow: hidden;
-  }
-
   /* ---- Watermark do primeiro nome atrás das fotos ---- */
   .watermark {
     font-family: var(--font-heading);
