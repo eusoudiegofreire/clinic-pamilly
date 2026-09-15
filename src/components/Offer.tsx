@@ -71,7 +71,10 @@ export default function Offer() {
               className="h-full w-full object-cover"
             />
           </ParallaxY>
-          <Monogram className="absolute -right-4 top-6 h-14 w-14 border-white/50 !bg-primary-deep text-base !text-white" />
+          <Monogram
+            tone="white"
+            className="absolute -right-4 top-6 h-14 w-14 border-white/50 !bg-primary-deep"
+          />
         </Reveal>
       </div>
     </section>

@@ -15,7 +15,7 @@ export default function NotAlwaysImmunity() {
 
       <div className="wrap relative max-w-3xl text-center">
         <Reveal>
-          <Monogram className="mx-auto h-14 w-14 text-base" />
+          <Monogram className="mx-auto h-14 w-14" />
           <span className="mt-6 inline-block rounded-full bg-salmon/35 px-4 py-1.5 text-xs font-bold uppercase tracking-[0.18em] text-primary">
             {notAlwaysImmunity.badge}
           </span>

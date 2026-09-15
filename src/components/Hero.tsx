@@ -132,7 +132,7 @@ export default function Hero() {
             />
           </div>
 
-          <Monogram className="absolute -left-5 top-8 h-16 w-16 text-lg shadow-[var(--shadow-soft)]" />
+          <Monogram className="absolute -left-5 top-8 h-16 w-16 shadow-[var(--shadow-soft)]" />
 
           <motion.div
             className="absolute -bottom-6 right-2 w-max max-w-[15rem] rounded-2xl border border-card-border bg-white/95 px-4 py-3 shadow-[var(--shadow-soft)] backdrop-blur-sm"

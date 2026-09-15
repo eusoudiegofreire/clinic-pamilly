@@ -43,7 +43,7 @@ export default function Header() {
             className="flex items-center gap-3"
             aria-label={`${siteConfig.doctor} — início`}
           >
-            <Monogram className="h-10 w-10 text-sm" />
+            <Monogram className="h-10 w-10" />
             <span className="hidden leading-tight sm:block">
               <span className="block font-heading text-sm font-bold text-primary">
                 {siteConfig.doctor}

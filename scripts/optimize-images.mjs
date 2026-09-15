@@ -73,6 +73,50 @@ async function logos() {
   console.log("logo  -> logo-life-clinic-branca.png (branca)");
 }
 
+/** Recolore um PNG (buffer/arquivo) preservando o alfa original. */
+async function recolor(input, { r, g, b }) {
+  const resized = await sharp(input).png().toBuffer();
+  const meta = await sharp(resized).metadata();
+  const alpha = await sharp(resized)
+    .ensureAlpha()
+    .extractChannel(3)
+    .toColourspace("b-w")
+    .toBuffer();
+  return sharp({
+    create: { width: meta.width, height: meta.height, channels: 3, background: { r, g, b } },
+  })
+    .joinChannel(alpha)
+    .png()
+    .toBuffer();
+}
+
+const PETROL = { r: 49, g: 87, b: 91 };
+const WHITE = { r: 255, g: 255, b: 255 };
+
+/**
+ * Símbolo isolado ("l" de life) recortado bem justo do logo, para usar
+ * como marca nos círculos de monograma e no favicon — no lugar de "PB".
+ */
+async function mark() {
+  const src = path.join(SRC, "Logo-Life-Clinic-transparente.png");
+  // Bounding box exato do glifo, calculado por trim() a partir do canto
+  // superior esquerdo do logo em resolução original (3146x2347).
+  const glyph = await sharp(src)
+    .extract({ left: 107, top: 80, width: 711, height: 1520 })
+    .extend({ top: 60, bottom: 60, left: 60, right: 60, background: { r: 0, g: 0, b: 0, alpha: 0 } })
+    .resize({ height: 700 })
+    .png()
+    .toBuffer();
+
+  await sharp(await recolor(glyph, PETROL)).toFile(path.join(OUT, "mark-petrol.png"));
+  await sharp(await recolor(glyph, WHITE)).toFile(path.join(OUT, "mark-white.png"));
+  console.log("mark  -> mark-petrol.png, mark-white.png");
+
+  // Favicon: mesmo glifo, cor original da marca (salmão), fundo transparente.
+  await sharp(glyph).resize(512, 512, { fit: "contain", background: { r: 0, g: 0, b: 0, alpha: 0 } }).png().toFile(path.resolve("src/app/icon.png"));
+  console.log("icon  -> src/app/icon.png (símbolo recortado)");
+}
+
 /**
  * Placeholders dos vídeos de depoimento (bege quente).
  * TODO: substituir por thumbnails reais dos depoimentos.
@@ -131,22 +175,13 @@ async function ogImage() {
   console.log("og    -> public/og-image.jpg");
 }
 
-/** Favicon a partir do símbolo da logo. */
-async function favicon() {
-  await sharp(path.join(SRC, "Logo-Life-Clinic-fundo-branco.png"))
-    .resize({ width: 512, height: 512, fit: "cover", position: "left top" })
-    .png()
-    .toFile(path.resolve("src/app/icon.png"));
-  console.log("icon  -> src/app/icon.png");
-}
-
 async function run() {
   await mkdir(OUT, { recursive: true });
   await photos();
   await logos();
+  await mark();
   await testimonialPlaceholders();
   await ogImage();
-  await favicon();
   console.log("\nok");
 }
 
