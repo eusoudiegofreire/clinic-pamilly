@@ -19,25 +19,31 @@ Originais em `/imagens` (fora do build). `npm run images` gera `/public/images`
 ## Pendências (TODO)
 
 1. **`WHATSAPP_NUMBER`** em `src/config/site.ts` — hoje `5569000000000` (placeholder).
-   Todos os CTAs e o botão flutuante apontam para `wa.me/<número>`. Trocar pelo real.
-2. **Vídeos de depoimento** — não vieram. 3 placeholders bege; trocar por thumbnails
+   Todos os CTAs usam a constante única `WHATSAPP_URL` (com mensagem pré-preenchida).
+   Trocar pelo número real.
+2. **Vídeos institucionais** (`videos` em `src/config/site.ts`) — "Conheça a Dra. Pâmilly"
+   (abaixo da seção Sobre) e "Alergia, imunidade e a saúde do seu filho" (após
+   "Nem toda criança…"). Hoje mostram espaço reservado "Vídeo em breve". Preencher
+   `embedUrl` (YouTube/Vimeo) **ou** `src` (arquivo em `/public/videos`) e o player aparece.
+3. **Vídeos de depoimento** — não vieram. 3 placeholders bege; trocar por thumbnails
    reais + embutir os vídeos em `src/components/Testimonials.tsx`.
-3. **Perguntas do FAQ** — o documento só definiu o estilo. As 4 perguntas em
-   `faq.items` são rascunho; revisar com a clínica.
-4. **`SITE_URL`** — placeholder (`pamilly.vercel.app`). Ajustar para o domínio real
+4. **Perguntas do FAQ** — mantidas como aprovadas; só as respostas sobre exames e
+   itens incluídos foram ajustadas ao novo fluxo.
+5. **`SITE_URL`** — placeholder (`pamilly.vercel.app`). Ajustar para o domínio real
    (usado em sitemap, JSON-LD, Open Graph).
-5. **Logo em petróleo** — o documento sugere a versão petróleo da marca no footer;
+6. **Logo em petróleo** — o documento sugere a versão petróleo da marca no footer;
    hoje é a logo rosa recolorida para branco. Substituir se houver o arquivo oficial.
 
 ## Decisões de design
 
 - Layout inspirado nas referências enviadas (Dra. Gabriela Arêdes / Dra. Melina Batista):
-  fotografia forte, headline grande, monograma "PB", botão-pílula com disco de ícone
-  repetido a cada seção, cores de seção alternadas, faixa fina no topo, WhatsApp flutuante.
+  fotografia forte, headline grande, botão-pílula com disco de ícone repetido a cada
+  seção, cores de seção alternadas, faixa fina no topo.
+- Posicionamento (set/2026): Alergia + Imunidade Infantil, com imunidade como eixo
+  principal. CTAs variam entre 3 textos e todos levam ao WhatsApp (sem checkout).
 - Paleta e métricas seguem o documento de identidade da Life Clinic (petróleo/salmão/bege).
 - Títulos em Manrope 800 (não serifada), conforme pedido.
-- Copy 100% do documento. Nenhuma seção nova de conteúdo foi criada — só a estrutura
-  visual ficou mais rica. A banda final reutiliza um fragmento verbatim da headline.
+- Copy vem do documento original + rodada de alterações de set/2026.
 
 ## Rodar
 

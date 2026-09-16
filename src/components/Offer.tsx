@@ -6,7 +6,7 @@ import PillButton from "./PillButton";
 import Reveal, { RevealGroup, RevealItem } from "./Reveal";
 import ParallaxY from "./ParallaxY";
 import { Check, WhatsApp } from "./icons";
-import { offer, whatsappUrl, CTA_WHATSAPP } from "@/config/site";
+import { offer, WHATSAPP_URL, CTA_WHATSAPP } from "@/config/site";
 
 export default function Offer() {
   const reduce = useReducedMotion();
@@ -42,12 +42,23 @@ export default function Offer() {
             ))}
           </RevealGroup>
 
-          <div className="mt-11 flex flex-col gap-3 sm:flex-row sm:items-center">
-            <PillButton href={whatsappUrl()} variant="salmon" external>
+          {/* Suporte — visível, mas secundário à oferta principal */}
+          <div className="mt-9 border-t border-white/15 pt-7">
+            <p className="font-heading text-lg font-bold text-white">
+              {offer.support.title}
+            </p>
+            <p className="mt-2 text-white/80">{offer.support.text}</p>
+            <p className="mt-3 text-sm leading-relaxed text-white/75">
+              {offer.support.notice}
+            </p>
+          </div>
+
+          <div className="mt-10 flex flex-col gap-3 sm:flex-row sm:items-center">
+            <PillButton href={WHATSAPP_URL} variant="salmon" external>
               {offer.cta}
             </PillButton>
             <a
-              href={whatsappUrl()}
+              href={WHATSAPP_URL}
               target="_blank"
               rel="noopener noreferrer"
               className="wa-link !text-white/80 hover:!text-white"

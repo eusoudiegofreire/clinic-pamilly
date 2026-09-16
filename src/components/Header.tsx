@@ -9,7 +9,7 @@ import {
   nav,
   topStrip,
   siteConfig,
-  whatsappUrl,
+  WHATSAPP_URL,
   CTA_WHATSAPP,
 } from "@/config/site";
 
@@ -55,7 +55,7 @@ export default function Header() {
               <span className="block font-heading text-sm font-bold text-primary">
                 {siteConfig.doctor}
               </span>
-              <span className="block text-[0.7rem] font-medium uppercase tracking-[0.14em] text-primary/55">
+              <span className="block text-[0.7rem] font-medium uppercase tracking-[0.14em] text-primary/55 lg:hidden xl:block">
                 {siteConfig.tagline}
               </span>
             </span>
@@ -66,7 +66,7 @@ export default function Header() {
               <a
                 key={n.href}
                 href={n.href}
-                className="text-sm font-medium text-primary/70 transition-colors hover:text-primary"
+                className="whitespace-nowrap text-sm font-medium text-primary/70 transition-colors hover:text-primary"
               >
                 {n.label}
               </a>
@@ -74,7 +74,7 @@ export default function Header() {
           </nav>
 
           <PillButton
-            href={whatsappUrl()}
+            href={WHATSAPP_URL}
             variant="ghost"
             external
             icon={<WhatsApp className="h-4 w-4" />}

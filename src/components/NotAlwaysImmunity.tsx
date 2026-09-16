@@ -28,7 +28,11 @@ export default function NotAlwaysImmunity() {
         </Reveal>
 
         <Reveal delay={180}>
-          <SectionCta align="center" className="mt-10" />
+          <SectionCta
+            align="center"
+            label={notAlwaysImmunity.cta}
+            className="mt-10"
+          />
         </Reveal>
       </div>
     </section>

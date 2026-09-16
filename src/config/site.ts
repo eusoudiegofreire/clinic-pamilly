@@ -1,6 +1,6 @@
 /**
  * Fonte única de conteúdo e configuração da landing page.
- * A copy segue exatamente o documento de referência da identidade visual.
+ * Posicionamento: Alergia + Imunidade Infantil (imunidade segue como eixo principal).
  */
 
 // TODO: trocar pelo domínio final antes de publicar.
@@ -10,21 +10,21 @@ export const SITE_URL = "https://pamilly.vercel.app";
 // Ex.: "5569999999999" (55 + DDD + número).
 export const WHATSAPP_NUMBER = "5569000000000";
 export const WHATSAPP_MESSAGE =
-  "Olá! Quero avaliar a imunidade do meu filho com a Dra. Pâmilly.";
+  "Olá! Vim pelo site da Dra. Pâmilly e gostaria de saber mais sobre a Consulta Online de Alergia e Imunologia Infantil.";
 
-export function whatsappUrl(message: string = WHATSAPP_MESSAGE): string {
-  return `https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(message)}`;
-}
+/** Link único do WhatsApp — todos os CTAs comerciais usam esta constante. */
+export const WHATSAPP_URL = `https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(
+  WHATSAPP_MESSAGE
+)}`;
 
 export const siteConfig = {
   name: "Life Clinic",
   doctor: "Dra. Pâmilly Barzzotto",
   doctorShort: "Dra. Pâmilly",
-  initials: "PB",
   role: "Pediatra | Alergista e Imunologista Infantil",
-  tagline: "Consulta de Imunidade Infantil Online",
+  tagline: "Consulta Online de Alergia e Imunologia Infantil",
   description:
-    "Uma avaliação individualizada da imunidade infantil, de 0 a 15 anos, com a Dra. Pâmilly. Consulta online para entender por que seu filho vive doente.",
+    "Consulta online de Alergia e Imunologia Infantil com a Dra. Pâmilly Barzzotto para crianças e adolescentes de 0 a 15 anos.",
   url: SITE_URL,
   locale: "pt_BR",
   price: "R$ 680",
@@ -36,7 +36,10 @@ export const siteConfig = {
   ],
 } as const;
 
-export const CTA_PRIMARY = "QUERO AVALIAR A IMUNIDADE DO MEU FILHO";
+/** Variações de CTA — todas levam ao WhatsApp. */
+export const CTA_EVALUATION = "QUERO AGENDAR UMA AVALIAÇÃO";
+export const CTA_CONSULTATION = "QUERO AGENDAR A CONSULTA";
+export const CTA_FOR_CHILD = "QUERO UMA AVALIAÇÃO PARA MEU FILHO";
 export const CTA_WHATSAPP = "Agende pelo WhatsApp";
 
 export const nav = [
@@ -50,51 +53,80 @@ export const nav = [
 export const topStrip = "Atendimento online • Crianças de 0 a 15 anos";
 
 export const hero = {
-  tag: "CONSULTA DE IMUNIDADE INFANTIL • ONLINE",
+  tag: "CONSULTA EM ALERGIA E IMUNIDADE INFANTIL • ONLINE",
   headlineLead: "Seu filho vive",
   headlineAccent: "doente",
-  headlineRest: "? Entenda melhor por que isso está acontecendo.",
-  text: "Uma avaliação individualizada da imunidade infantil.",
-  cta: CTA_PRIMARY,
-  meta: "0 a 15 anos • Consulta online • R$ 680",
+  headlineRest: " ou sofre com alergias?",
+  headlineSecond: "Entenda melhor o que pode estar acontecendo.",
+  text: "Uma avaliação especializada e individualizada para crianças com alergias, infecções recorrentes ou dúvidas sobre a imunidade.",
+  cta: CTA_EVALUATION,
+  meta: "0 a 15 anos • Consulta online",
   card: {
     role: "Alergista e Imunologista Infantil",
     reg: "CRM-RO 5324",
   },
 } as const;
 
-/** Seção "É uma gripe atrás da outra?" — frases reais dos pais. */
+/** Seção "O que os pais nos dizem" — relatos. */
 export const painPoints = {
   kicker: "O que os pais nos dizem",
   title: "É uma gripe atrás da outra?",
   quotes: [
-    "Meu filho vive doente.",
-    "É uma gripe atrás da outra.",
+    "Meu filho vive doente. É uma infecção atrás da outra.",
+    "Ele vive com rinite, tosse, coceira ou alergias que sempre voltam.",
     "Será que a imunidade dele é baixa?",
   ],
+  question: "Seu filho passa por alguma dessas situações?",
+  cta: CTA_EVALUATION,
 } as const;
 
-/** Seção "Nem tudo é imunidade baixa". */
+/** Seção "Nem tudo é imunidade baixa" — aprovada, não alterar a copy. */
 export const notAlwaysImmunity = {
   badge: "IMPORTANTE SABER",
   headline:
     "Nem toda criança que adoece frequentemente tem “imunidade baixa”.",
+  cta: CTA_FOR_CHILD,
 } as const;
 
-/** Fluxo da consulta — passos exatamente como no documento. */
+/** Fluxo da consulta — 6 etapas. Agendamento vem antes de tudo. */
 export const consultationFlow = {
   kicker: "Como funciona",
-  title: "Fluxo da consulta",
+  title: "Sua consulta, passo a passo.",
   steps: [
-    { n: "01", label: "Pagamento" },
-    { n: "02", label: "Questionário" },
-    { n: "03", label: "Exames em até 72h" },
-    { n: "04", label: "Realize os exames" },
-    { n: "05", label: "Agendamento" },
-    { n: "06", label: "Consulta online" },
-    { n: "07", label: "Orientações" },
-    { n: "08", label: "45 dias de suporte" },
+    {
+      n: "01",
+      title: "Agendamento e pagamento",
+      text: "Escolha o melhor dia e horário e confirme sua consulta.",
+    },
+    {
+      n: "02",
+      title: "Questionário inicial",
+      text: "Você receberá um questionário para que eu conheça melhor a história e as principais queixas da criança.",
+    },
+    {
+      n: "03",
+      title: "Avaliação prévia",
+      text: "Após analisar as informações, serão solicitados exames iniciais antes da consulta.",
+    },
+    {
+      n: "04",
+      title: "Realização dos exames",
+      text: "Você poderá realizá-los no laboratório de sua preferência.",
+    },
+    {
+      n: "05",
+      title: "Consulta online",
+      text: "Um atendimento individualizado para avaliar o histórico da criança, alergias, infecções recorrentes, imunidade, exames e demais necessidades.",
+    },
+    {
+      n: "06",
+      title: "Plano de cuidados",
+      text: "Ao final, você receberá as orientações e condutas individualizadas para o seu filho.",
+    },
   ],
+  closing:
+    "Tudo pensado para que a consulta seja mais completa e direcionada às necessidades do seu filho.",
+  cta: CTA_CONSULTATION,
 } as const;
 
 export const aboutDoctor = {
@@ -104,6 +136,33 @@ export const aboutDoctor = {
   role: siteConfig.role,
   registrations: siteConfig.registrations,
   watermark: "Pâmilly",
+  cta: CTA_FOR_CHILD,
+} as const;
+
+/**
+ * Vídeos — ainda não gravados. Enquanto `embedUrl` e `src` estiverem vazios,
+ * o site mostra um espaço reservado neutro (sem thumbnail, sem foto).
+ *
+ * Para publicar, preencha UM dos dois:
+ * - embedUrl: YouTube/Vimeo, ex. "https://www.youtube-nocookie.com/embed/ID_DO_VIDEO"
+ * - src:      arquivo local em /public/videos, ex. "/videos/apresentacao.mp4"
+ * `poster` (opcional) é a capa do arquivo local.
+ */
+export const videos = {
+  intro: {
+    kicker: "Assista",
+    title: "Conheça a Dra. Pâmilly",
+    embedUrl: "",
+    src: "",
+    poster: "",
+  },
+  allergyImmunity: {
+    kicker: "Assista",
+    title: "Alergia, imunidade e a saúde do seu filho",
+    embedUrl: "",
+    src: "",
+    poster: "",
+  },
 } as const;
 
 export const testimonials = {
@@ -115,27 +174,34 @@ export const testimonials = {
     { id: 2, poster: "/images/depoimento-2.jpg" },
     { id: 3, poster: "/images/depoimento-3.jpg" },
   ],
+  cta: CTA_EVALUATION,
 } as const;
 
 export const offer = {
   kicker: "A consulta",
-  title: "Consulta de Imunidade Infantil Online",
+  title: "Consulta Online de Alergia e Imunologia Infantil",
   price: siteConfig.price,
   items: [
-    "Questionário pré-consulta",
+    // hífen inseparável (U+2011) para "pré‑consulta" não quebrar no mobile
+    "Questionário detalhado pré‑consulta",
     "Solicitação individualizada de exames",
-    "Consulta de aproximadamente 1 hora",
-    "Avaliação dos resultados",
-    "Orientações individualizadas",
-    "45 dias de suporte",
+    "Consulta online de aproximadamente 1 hora",
+    "Avaliação completa da história da criança",
+    "Avaliação dos exames já realizados",
+    "Plano de cuidados e orientações individualizadas",
   ],
-  cta: CTA_PRIMARY,
+  support: {
+    title: "45 dias de suporte após a consulta",
+    text: "Canal online para dúvidas relacionadas às orientações realizadas durante o atendimento.",
+    notice:
+      "O suporte não substitui atendimento de urgência e não contempla avaliação de novas queixas.",
+  },
+  cta: CTA_CONSULTATION,
 } as const;
 
 export const faq = {
   kicker: "Dúvidas",
   title: "Perguntas frequentes",
-  // TODO: substituir pelas perguntas e respostas reais fornecidas pela clínica.
   items: [
     {
       q: "Para qual faixa de idade é a consulta?",
@@ -147,19 +213,13 @@ export const faq = {
     },
     {
       q: "Como funcionam os exames?",
-      a: "Após o questionário pré-consulta, a Dra. Pâmilly faz uma solicitação individualizada de exames, liberada em até 72h. Você realiza os exames e, em seguida, agenda a consulta.",
+      a: "Após o agendamento e o questionário inicial, as informações são analisadas e são solicitados exames iniciais antes da consulta. Você poderá realizá-los no laboratório de sua preferência.",
     },
     {
       q: "O que está incluído no valor?",
-      a: "Questionário pré-consulta, solicitação individualizada de exames, consulta de aproximadamente 1 hora, avaliação dos resultados, orientações individualizadas e 45 dias de suporte.",
+      a: "Questionário detalhado pré-consulta, solicitação individualizada de exames, consulta online de aproximadamente 1 hora, avaliação completa da história da criança, avaliação dos exames já realizados, plano de cuidados e orientações individualizadas, e 45 dias de suporte após a consulta.",
     },
   ],
-} as const;
-
-export const finalCta = {
-  // fragmento verbatim da headline do documento
-  title: "Entenda melhor por que isso está acontecendo.",
-  cta: CTA_PRIMARY,
 } as const;
 
 export const footer = {

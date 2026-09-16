@@ -137,6 +137,9 @@
       color 0.25s ease, box-shadow 0.25s ease;
     will-change: transform;
   }
+  .pill > span:first-child {
+    text-wrap: balance;
+  }
   .pill__disc {
     display: grid;
     place-items: center;

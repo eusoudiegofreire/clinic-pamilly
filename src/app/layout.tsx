@@ -24,19 +24,23 @@ const inter = Inter({
   display: "swap",
 });
 
+const PAGE_TITLE = `${siteConfig.tagline} | ${siteConfig.doctor}`;
+
 export const metadata: Metadata = {
   metadataBase: new URL(SITE_URL),
   title: {
-    default: `${siteConfig.doctorShort} | ${siteConfig.tagline}`,
-    template: `%s | ${siteConfig.doctorShort}`,
+    default: PAGE_TITLE,
+    template: `%s | ${siteConfig.doctor}`,
   },
   description: siteConfig.description,
   keywords: [
+    "alergia e imunologia infantil",
+    "consulta de alergia infantil online",
     "imunidade infantil",
+    "alergista infantil online",
+    "imunologista infantil",
     "consulta pediátrica online",
     "criança vive doente",
-    "gripe atrás da outra",
-    "alergista imunologista infantil",
     "Dra. Pâmilly",
     "Dra. Pâmilly Barzzotto",
     "Life Clinic",
@@ -48,7 +52,7 @@ export const metadata: Metadata = {
     locale: siteConfig.locale,
     url: SITE_URL,
     siteName: siteConfig.name,
-    title: `${siteConfig.doctorShort} | ${siteConfig.tagline}`,
+    title: PAGE_TITLE,
     description: siteConfig.description,
     images: [
       {
@@ -61,7 +65,7 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: `${siteConfig.doctorShort} | ${siteConfig.tagline}`,
+    title: PAGE_TITLE,
     description: siteConfig.description,
     images: ["/og-image.jpg"],
   },

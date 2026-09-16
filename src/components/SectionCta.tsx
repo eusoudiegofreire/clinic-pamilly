@@ -1,6 +1,6 @@
 import PillButton from "./PillButton";
 import { WhatsApp } from "./icons";
-import { whatsappUrl, CTA_PRIMARY, CTA_WHATSAPP } from "@/config/site";
+import { WHATSAPP_URL, CTA_EVALUATION, CTA_WHATSAPP } from "@/config/site";
 
 type SectionCtaProps = {
   align?: "start" | "center";
@@ -13,7 +13,7 @@ type SectionCtaProps = {
 export default function SectionCta({
   align = "start",
   variant = "primary",
-  label = CTA_PRIMARY,
+  label = CTA_EVALUATION,
   className = "",
   onDark = false,
 }: SectionCtaProps) {
@@ -23,11 +23,11 @@ export default function SectionCta({
         align === "center" ? "sm:justify-center" : ""
       } ${className}`}
     >
-      <PillButton href={whatsappUrl()} variant={variant} external>
+      <PillButton href={WHATSAPP_URL} variant={variant} external>
         {label}
       </PillButton>
       <a
-        href={whatsappUrl()}
+        href={WHATSAPP_URL}
         target="_blank"
         rel="noopener noreferrer"
         className={`wa-link ${

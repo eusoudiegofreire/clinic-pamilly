@@ -2,7 +2,8 @@ import Image from "next/image";
 import Reveal, { RevealGroup, RevealItem } from "./Reveal";
 import ParallaxY from "./ParallaxY";
 import SectionCta from "./SectionCta";
-import { aboutDoctor } from "@/config/site";
+import VideoBlock from "./VideoBlock";
+import { aboutDoctor, videos } from "@/config/site";
 
 export default function AboutDoctor() {
   return (
@@ -64,9 +65,25 @@ export default function AboutDoctor() {
                 ))}
               </RevealGroup>
 
-              <SectionCta className="mt-9" />
+              <SectionCta label={aboutDoctor.cta} className="mt-9" />
             </Reveal>
           </div>
+        </div>
+
+        {/* Vídeo 1 — apresentação da Dra. Pâmilly */}
+        <div className="mx-auto mt-16 max-w-3xl md:mt-20">
+          <Reveal className="text-center">
+            <p className="kicker kicker--center">{videos.intro.kicker}</p>
+            <h3 className="mt-4 text-2xl sm:text-3xl">{videos.intro.title}</h3>
+          </Reveal>
+          <Reveal delay={100} className="mt-8">
+            <VideoBlock
+              title={videos.intro.title}
+              embedUrl={videos.intro.embedUrl}
+              src={videos.intro.src}
+              poster={videos.intro.poster}
+            />
+          </Reveal>
         </div>
       </div>
     </section>

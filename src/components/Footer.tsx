@@ -1,6 +1,6 @@
 import Image from "next/image";
 import { WhatsApp } from "./icons";
-import { footer, whatsappUrl } from "@/config/site";
+import { footer, WHATSAPP_URL } from "@/config/site";
 
 export default function Footer() {
   return (
@@ -25,7 +25,7 @@ export default function Footer() {
 
         <div className="text-sm text-white/70 sm:text-right">
           <a
-            href={whatsappUrl()}
+            href={WHATSAPP_URL}
             target="_blank"
             rel="noopener noreferrer"
             className="inline-flex items-center gap-2 font-medium text-white transition-opacity hover:opacity-80"

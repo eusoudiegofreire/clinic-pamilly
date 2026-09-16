@@ -63,7 +63,10 @@ export default function PainPoints() {
           </div>
 
           <Reveal delay={220}>
-            <SectionCta className="mt-10" />
+            <p className="mt-10 font-heading text-xl font-bold text-primary sm:text-2xl">
+              {painPoints.question}
+            </p>
+            <SectionCta label={painPoints.cta} className="mt-6" />
           </Reveal>
         </div>
       </div>

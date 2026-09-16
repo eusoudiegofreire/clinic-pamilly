@@ -24,11 +24,16 @@ export default function ConsultationFlow() {
                 key={step.n}
                 className="flex items-start gap-4 border-t border-primary/15 pt-4"
               >
-                <span className="font-heading text-3xl font-extrabold text-salmon">
+                <span className="w-11 shrink-0 font-heading text-3xl font-extrabold leading-none tabular-nums text-salmon">
                   {step.n}
                 </span>
-                <span className="pt-1 text-base font-semibold text-primary">
-                  {step.label}
+                <span className="min-w-0">
+                  <span className="block text-base font-semibold text-primary">
+                    {step.title}
+                  </span>
+                  <span className="mt-1.5 block text-[0.95rem] leading-relaxed text-primary/70">
+                    {step.text}
+                  </span>
                 </span>
               </RevealItem>
             ))}
@@ -50,7 +55,10 @@ export default function ConsultationFlow() {
         </div>
 
         <Reveal delay={200}>
-          <SectionCta className="mt-12" />
+          <p className="mt-12 max-w-2xl text-lg text-primary/80">
+            {consultationFlow.closing}
+          </p>
+          <SectionCta label={consultationFlow.cta} className="mt-6" />
         </Reveal>
       </div>
     </section>

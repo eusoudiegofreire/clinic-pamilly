@@ -39,7 +39,7 @@ export default function Testimonials() {
         </RevealGroup>
 
         <Reveal delay={200}>
-          <SectionCta className="mt-12" />
+          <SectionCta label={testimonials.cta} className="mt-12" />
         </Reveal>
       </div>
     </section>
