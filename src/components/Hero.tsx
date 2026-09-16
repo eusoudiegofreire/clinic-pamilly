@@ -3,8 +3,7 @@
 import Image from "next/image";
 import { motion, useReducedMotion, type Variants } from "framer-motion";
 import PillButton from "./PillButton";
-import { WhatsApp } from "./icons";
-import { hero, siteConfig, WHATSAPP_URL, CTA_WHATSAPP } from "@/config/site";
+import { hero, siteConfig, WHATSAPP_URL } from "@/config/site";
 
 const SPRING = { type: "spring", stiffness: 90, damping: 20, mass: 0.9 } as const;
 
@@ -87,15 +86,6 @@ export default function Hero() {
             <PillButton href={WHATSAPP_URL} external>
               {hero.cta}
             </PillButton>
-            <a
-              href={WHATSAPP_URL}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="wa-link"
-            >
-              <WhatsApp className="h-4 w-4" />
-              {CTA_WHATSAPP}
-            </a>
           </motion.div>
 
           <motion.p
