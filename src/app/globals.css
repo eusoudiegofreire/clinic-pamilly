@@ -206,19 +206,6 @@
     height: 1.9rem;
   }
 
-  /* Link discreto "agende pelo WhatsApp" */
-  .wa-link {
-    display: inline-flex;
-    align-items: center;
-    gap: 0.5rem;
-    font-weight: 600;
-    font-size: 0.9rem;
-    color: color-mix(in srgb, var(--color-primary) 78%, transparent);
-    transition: color 0.2s ease;
-  }
-  .wa-link:hover {
-    color: var(--color-primary);
-  }
 
   /* ---- Moldura em arco para fotos ---- */
   .arch {

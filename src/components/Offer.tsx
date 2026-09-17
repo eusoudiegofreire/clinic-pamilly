@@ -5,8 +5,8 @@ import { motion, useReducedMotion } from "framer-motion";
 import PillButton from "./PillButton";
 import Reveal, { RevealGroup, RevealItem } from "./Reveal";
 import ParallaxY from "./ParallaxY";
-import { Check, WhatsApp } from "./icons";
-import { offer, WHATSAPP_URL, CTA_WHATSAPP } from "@/config/site";
+import { Check } from "./icons";
+import { offer, WHATSAPP_URL } from "@/config/site";
 
 export default function Offer() {
   const reduce = useReducedMotion();
@@ -57,15 +57,6 @@ export default function Offer() {
             <PillButton href={WHATSAPP_URL} variant="salmon" external>
               {offer.cta}
             </PillButton>
-            <a
-              href={WHATSAPP_URL}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="wa-link !text-white/80 hover:!text-white"
-            >
-              <WhatsApp className="h-4 w-4" />
-              {CTA_WHATSAPP}
-            </a>
           </div>
         </Reveal>
 
