@@ -38,13 +38,10 @@ export default function PainPoints() {
         {/* Texto + citações */}
         <div>
           <Reveal>
-            <p className="kicker">{painPoints.kicker}</p>
-            <h2 className="mt-5 text-3xl sm:text-4xl md:text-[2.7rem]">
-              {painPoints.title}
-            </h2>
+            <h2 className="kicker">{painPoints.kicker}</h2>
           </Reveal>
 
-          <div className="mt-9 space-y-4">
+          <div className="mt-8 space-y-4">
             {painPoints.quotes.map((quote, i) => (
               <Reveal key={quote} delay={i * 90}>
                 <figure className="flex items-start gap-4 rounded-card border border-card-border bg-white p-5 shadow-[var(--shadow-soft)]">

@@ -70,11 +70,11 @@ export const hero = {
 /** Seção "O que os pais nos dizem" — relatos. */
 export const painPoints = {
   kicker: "O que os pais nos dizem",
-  title: "É uma gripe atrás da outra?",
   quotes: [
     "Meu filho vive doente. É uma infecção atrás da outra.",
     "Ele vive com rinite, tosse, coceira ou alergias que sempre voltam.",
     "Será que a imunidade dele é baixa?",
+    "É uma gripe atrás da outra.",
   ],
   question: "Seu filho passa por alguma dessas situações?",
   cta: CTA_EVALUATION,
