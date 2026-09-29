@@ -130,8 +130,13 @@ export default function Hero() {
             animate={{ opacity: 1, y: 0 }}
             transition={{ ...SPRING, delay: 0.55 }}
           >
-            <p className="text-sm font-semibold text-primary">{hero.card.role}</p>
-            <p className="mt-0.5 text-xs font-medium text-primary/55">
+            <p className="font-heading text-sm font-bold text-primary">
+              {hero.card.name}
+            </p>
+            <p className="mt-1 text-xs font-medium leading-snug text-primary/70">
+              {hero.card.role}
+            </p>
+            <p className="mt-1 text-[0.7rem] font-medium text-primary/50">
               {hero.card.reg}
             </p>
           </motion.div>

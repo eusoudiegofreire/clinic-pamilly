@@ -62,6 +62,7 @@ export const hero = {
   cta: CTA_EVALUATION,
   meta: "0 a 15 anos • Consulta online",
   card: {
+    name: siteConfig.doctor,
     role: "Alergista e Imunologista Infantil",
     reg: "CRM-RO 5324",
   },
