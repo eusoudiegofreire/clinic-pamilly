@@ -1,4 +1,3 @@
-import Image from "next/image";
 import Reveal, { RevealGroup, RevealItem } from "./Reveal";
 import SectionCta from "./SectionCta";
 import { Play } from "./icons";
@@ -17,21 +16,28 @@ export default function Testimonials() {
 
         <RevealGroup className="mt-12 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
           {testimonials.items.map((item) => (
-            <RevealItem key={item.id}>
-              <figure className="group overflow-hidden rounded-card border border-card-border bg-white shadow-[var(--shadow-soft)]">
-                <div className="relative aspect-[4/5]">
-                  <Image
-                    src={item.poster}
-                    alt="Depoimento de família atendida pela Dra. Pâmilly"
-                    fill
-                    sizes="(max-width: 640px) 90vw, (max-width: 1024px) 45vw, 360px"
-                    className="object-cover transition-transform duration-500 ease-[cubic-bezier(0.16,1,0.3,1)] group-hover:scale-[1.03]"
-                  />
-                  <span className="absolute inset-0 grid place-items-center">
-                    <span className="grid h-16 w-16 place-items-center rounded-full bg-white/92 text-primary shadow-[var(--shadow-soft)] transition-transform duration-300 ease-[cubic-bezier(0.34,1.56,0.64,1)] group-hover:scale-110">
-                      <Play className="ml-0.5 h-6 w-6" />
+            <RevealItem key={item.id} className="mx-auto w-full max-w-[320px]">
+              <figure className="overflow-hidden rounded-card border border-card-border bg-white shadow-[var(--shadow-soft)]">
+                <div className="relative aspect-[9/16] bg-warm-beige/60">
+                  {item.youtubeId ? (
+                    <iframe
+                      src={`https://www.youtube-nocookie.com/embed/${item.youtubeId}`}
+                      title={item.title}
+                      loading="lazy"
+                      allow="accelerometer; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                      allowFullScreen
+                      className="absolute inset-0 h-full w-full"
+                    />
+                  ) : (
+                    <span className="absolute inset-0 flex flex-col items-center justify-center gap-3">
+                      <span className="grid h-14 w-14 place-items-center rounded-full bg-white/92 text-primary shadow-[var(--shadow-soft)] sm:h-16 sm:w-16">
+                        <Play className="ml-0.5 h-6 w-6" />
+                      </span>
+                      <span className="text-xs font-semibold uppercase tracking-[0.16em] text-primary/55">
+                        Vídeo em breve
+                      </span>
                     </span>
-                  </span>
+                  )}
                 </div>
               </figure>
             </RevealItem>

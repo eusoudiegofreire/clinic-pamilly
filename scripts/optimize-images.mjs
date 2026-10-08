@@ -96,26 +96,6 @@ async function favicon() {
   console.log("icon  -> src/app/icon.png (símbolo recortado)");
 }
 
-/**
- * Placeholders dos vídeos de depoimento (bege quente).
- * TODO: substituir por thumbnails reais dos depoimentos.
- */
-async function testimonialPlaceholders() {
-  for (let i = 1; i <= 3; i++) {
-    await sharp({
-      create: {
-        width: 720,
-        height: 960,
-        channels: 3,
-        background: { r: 240, g: 218, b: 206 },
-      },
-    })
-      .jpeg({ quality: 70 })
-      .toFile(path.join(OUT, `depoimento-${i}.jpg`));
-  }
-  console.log("placeholder  -> depoimento-1..3.jpg (TODO: trocar)");
-}
-
 /** OG image 1200x630 — logo branca sobre petróleo. */
 async function ogImage() {
   const resized = await sharp(path.join(SRC, "Logo-Life-Clinic-transparente.png"))
@@ -159,7 +139,6 @@ async function run() {
   await photos();
   await logos();
   await favicon();
-  await testimonialPlaceholders();
   await ogImage();
   console.log("\nok");
 }

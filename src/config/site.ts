@@ -166,14 +166,19 @@ export const videos = {
   },
 } as const;
 
+/**
+ * Depoimentos em vídeo (YouTube). Para publicar um novo, basta colar o ID do
+ * vídeo em `youtubeId` — é o trecho final do link, ex.:
+ * https://youtube.com/shorts/h2AUBdFRkOI  ->  "h2AUBdFRkOI"
+ * Card com `youtubeId` vazio mostra o espaço reservado "Vídeo em breve".
+ */
 export const testimonials = {
   kicker: "Histórias de famílias",
   title: "O que famílias atendidas pela Dra. Pâmilly contam",
-  // TODO: adicionar os vídeos reais em /public/images/depoimento-*.jpg + arquivos de vídeo.
   items: [
-    { id: 1, poster: "/images/depoimento-1.jpg" },
-    { id: 2, poster: "/images/depoimento-2.jpg" },
-    { id: 3, poster: "/images/depoimento-3.jpg" },
+    { id: 1, youtubeId: "h2AUBdFRkOI", title: "Depoimento" },
+    { id: 2, youtubeId: "", title: "Depoimento" },
+    { id: 3, youtubeId: "", title: "Depoimento" },
   ],
   cta: CTA_EVALUATION,
 } as const;
