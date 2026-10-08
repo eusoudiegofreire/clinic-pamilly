@@ -169,14 +169,14 @@ export const videos = {
 /**
  * Depoimentos em vídeo (YouTube). Para publicar um novo, basta colar o ID do
  * vídeo em `youtubeId` — é o trecho final do link, ex.:
- * https://youtube.com/shorts/h2AUBdFRkOI  ->  "h2AUBdFRkOI"
+ * https://youtube.com/shorts/nOoBZTzxpMc  ->  "nOoBZTzxpMc"
  * Card com `youtubeId` vazio mostra o espaço reservado "Vídeo em breve".
  */
 export const testimonials = {
   kicker: "Histórias de famílias",
   title: "O que famílias atendidas pela Dra. Pâmilly contam",
   items: [
-    { id: 1, youtubeId: "h2AUBdFRkOI", title: "Depoimento" },
+    { id: 1, youtubeId: "nOoBZTzxpMc", title: "Depoimento" },
     { id: 2, youtubeId: "", title: "Depoimento" },
     { id: 3, youtubeId: "", title: "Depoimento" },
   ],
